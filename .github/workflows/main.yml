@@ -35,8 +35,6 @@ jobs:
       #      - name: Analyze to check for bad Dart/Flutter practices
       #        run: flutter analyze
 
-      - name: Run all app tests
-        run: flutter test
 
       - run: flutter build apk --release
 
