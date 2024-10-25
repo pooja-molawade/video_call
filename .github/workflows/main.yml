@@ -1,0 +1,71 @@
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+      - develop
+name: "Build & Release"
+jobs:
+  build:
+    name: Build & Release
+    runs-on: windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      # Run flutter commands
+
+      - name: Install dependencies
+        run: flutter pub get
+
+
+      - run: flutter build apk --release
+
+      # Build Android Bundle release file
+      - name: Build aab
+        run: |
+          flutter build appbundle --release
+      - run: |
+          cd ios
+          rm podfile.lock
+          pod deintegrate
+          pod repo update
+          pod install
+      #
+      #      - run: |
+      #          flutter build ios
+      #          cd build/ios/iphoneos
+      #          mkdir Payload
+      #          cd Payload
+      #          ln -s ../Runner.app
+      #          cd ..
+      #          zip -r app.ipa Payload
+
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
+
+
+
+
+
+
+# push to master, main, develop
+# pull request on main master
