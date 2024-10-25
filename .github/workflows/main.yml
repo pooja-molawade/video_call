@@ -12,7 +12,7 @@ name: "Build & Release"
 jobs:
   build:
     name: Build & Release
-    runs-on: windows
+    runs-on: ubuntu_latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
