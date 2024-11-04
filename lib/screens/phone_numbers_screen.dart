@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:video_call/screens/video_call_screen.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
@@ -27,14 +29,10 @@ class PhoneNumberScreen extends StatelessWidget {
                 'status': 'calling',
                 'offer': null,
               });
+              Get.to(VideoCallScreen());
 
               // Navigate to the Video Call Page and start the call
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => VideoCallScreen(callId: '12',),
-                ),
-              );
+
             },
           );
         },

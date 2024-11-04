@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Get.to(LandingScreen());
+            Get.to(VideoCallScreen());
           },
           child: const Text(
             "Start Call",

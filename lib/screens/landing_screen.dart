@@ -44,7 +44,8 @@ class LandingScreen extends StatelessWidget {
                     _showSnackbar(context,'Please enter a Call ID');
                     return;
                   }
-                 Get.to(VideoCallScreen(callId: callId,));
+                  Get.to(VideoCallScreen());
+                // Get.to(VideoCallScreen(callId: callId, isCaller: false,));
                   _callIdController.text='';
 
                 },
@@ -57,7 +58,9 @@ class LandingScreen extends StatelessWidget {
                     _showSnackbar(context,'Please enter a Call ID');
                     return;
                   }
-                  Get.to(VideoCallScreen(callId: callId,));
+                  Get.to(VideoCallScreen());
+
+                  //Get.to(VideoCallScreen(callId: callId, isCaller: true,));
                   _callIdController.text='';
                 },
                 child: const Text('Make Call'),
