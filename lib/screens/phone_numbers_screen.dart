@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:video_call/screens/video_call_ppage_new.dart';
+import 'package:video_call/screens/video_call_screen.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
   final List<String> contacts = ['9552', '9545381643', '1234', '5678'];
@@ -32,7 +32,7 @@ class PhoneNumberScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => VideoCallPage(),
+                  builder: (context) => VideoCallScreen(callId: '12',),
                 ),
               );
             },
